@@ -10,9 +10,7 @@ public class Book {
      
      private String author;
 
-     public Book(){
-
-     }
+     public Book(){}
 
     public Book(String name, String genre, String author) {
         this.name = name;
