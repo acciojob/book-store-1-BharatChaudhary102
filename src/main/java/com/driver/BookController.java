@@ -60,18 +60,18 @@ public class BookController {
     // get request /get-book-by-id/{id}
     // pass id as path variable
     @GetMapping("/get-book-by-id/{id}")
-     public ResponseEntity<Book> getBookById(@PathVariable("id")int id){
-        return new ResponseEntity<>(booksById.get(id), HttpStatus.OK);
+     public ResponseEntity<Book> getBookById(@PathVariable("id")String id){
+        return new ResponseEntity<>(booksById.get(Integer.parseInt(id)), HttpStatus.OK);
      }
 
     // delete request /delete-book-by-id/{id}
     // pass id as path variable
     // deleteBookById()
     @DeleteMapping("/delete-book-by-id/{id}")
-    public ResponseEntity<String> deleteBookById(@PathVariable("id")int id){
-        if(booksById.containsKey(id)){
-            bookList.remove(booksById.get(id));
-            booksById.remove(id);
+    public ResponseEntity<String> deleteBookById(@PathVariable("id")String id){
+        if(booksById.containsKey(Integer.parseInt(id))){
+            bookList.remove(booksById.get(Integer.parseInt(id)));
+            booksById.remove(Integer.parseInt(id));
         }
         return new ResponseEntity("Success",HttpStatus.OK);
     }
