@@ -42,7 +42,7 @@ public class BookController {
     public BookController(){
         this.bookList = new ArrayList<Book>();
         this.booksById = new HashMap<>();
-        this.id = 1;
+        setId(1);
     }
 
     // post request /create-book
@@ -68,12 +68,12 @@ public class BookController {
     // pass id as path variable
     // deleteBookById()
     @DeleteMapping("/delete-book-by-id/{id}")
-    public ResponseEntity deleteBookById(@PathVariable("id")int id){
+    public ResponseEntity<String> deleteBookById(@PathVariable("id")int id){
         if(booksById.containsKey(id)){
             bookList.remove(booksById.get(id));
             booksById.remove(id);
         }
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity("Success",HttpStatus.OK);
     }
 
     // get request /get-all-books
@@ -86,11 +86,11 @@ public class BookController {
     // delete request /delete-all-books
     // deleteAllBooks()
     @DeleteMapping("/delete-all-books")
-    public ResponseEntity deleteAllBooks(){
+    public ResponseEntity<String> deleteAllBooks(){
         bookList.clear();
         booksById.clear();
         this.id = 1;
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity("Success", HttpStatus.OK);
     }
 
     // get request /get-books-by-author
